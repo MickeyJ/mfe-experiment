@@ -5,7 +5,7 @@ const commonConfig = require('./webpack.common');
 const packageJSON = require('../package.json')
 
 const devConfig = {
-    mode: 'development',
+    mode: "development",
     devServer: {
         port: 8081,
         historyApiFallback: {
