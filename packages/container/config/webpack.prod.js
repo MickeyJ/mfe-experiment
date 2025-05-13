@@ -1,5 +1,6 @@
 const { merge } = require('webpack-merge');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const commonConfig = require('./webpack.common');
 const packageJSON = require('../package.json');
 
@@ -12,6 +13,17 @@ const prodConfig = {
     publicPath: '/container/latest/',
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public',
+          to: '',
+          globOptions: {
+            ignore: ['**/*.html'],
+          },
+        },
+      ],
+    }),
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {
